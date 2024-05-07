@@ -1,0 +1,27 @@
+/プロジェクト名
+│
+├── docker-compose.yml            # Docker Compose設定ファイル
+├── Dockerfile                    # 追加のカスタマイズが必要な場合のDockerfile
+│
+├── public-html                   # Apacheで公開するディレクトリ（Document Root）
+│   ├── index.php                 # エントリーポイント
+│   └── assets                    # CSS、JavaScript、画像ファイルなど
+│
+├── app                           # アプリケーションのMVC構造
+│   ├── Controllers               # コントローラディレクトリ
+│   │   └── HomeController.php
+│   ├── Models                    # モデルディレクトリ
+│   │   └── User.php
+│   ├── Views                     # ビューディレクトリ
+│       ├── home.php
+│       └── header.php
+│
+├── config                        # 設定ファイル
+│   ├── database.php              # データベース接続設定
+│   └── app.php                   # アプリケーションの全体設定
+│
+├── migrations                    # データベースのマイグレーション
+│   └── init.sql                  # 初期化用SQL
+│
+└── logs                          # ログファイル
+    └── error.log                 # エラーログファイル

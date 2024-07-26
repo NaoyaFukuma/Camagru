@@ -1,22 +1,37 @@
 version: "3.8"
 services:
   web:
-    image: php:8.1-apache
+    build: ./
     ports:
       - "80:80"
     volumes:
-      - ./public-html:/var/www/html
+      - ./public:/var/www/html
       - uploads:/var/www/uploads   # 永続化されたボリュームをマウント
+      - apache_logs:/var/log/apache2
     depends_on:
       - mysql
+    networks:
+      - app-network
 
   mysql:
     image: mysql:8
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
+      - mysql_logs:/var/log/mysql
+    networks:
+      - app-network
 
 volumes:
   uploads:  # 永続化されたボリュームの定義
   db_data:
+  apache_logs:
+  mysql_logs:
+
+networks:
+  app-network:
+    driver: bridge

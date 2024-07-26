@@ -13,7 +13,8 @@ Instagramみたいな機能を持ったやつ？
 ||macOS Sonoma ver.14.2.1|Docker version 26.0.0|個人PC|
 ||||校舎レビュー用PC|
 
-#### 起動コマンド
+#### 起動
+`.env.example`というファイルの案内に沿って環境変数を設定する。
 プロジェクトルートで、
 `make up`
 その他の`make`コマンドは`Makefile`内を参照（再起動など）

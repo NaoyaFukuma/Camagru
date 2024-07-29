@@ -1,8 +1,9 @@
 RewriteEngine On
-# Remove trailing slashes
+
+# トレーリングスラッシュを削除
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-# Route all requests not pointing to an actual file to index.php
+# 実際のファイルまたはディレクトリに対するリクエストではない場合、すべてのリクエストを index.php へ転送
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]

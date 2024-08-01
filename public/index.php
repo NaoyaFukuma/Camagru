@@ -1,5 +1,8 @@
 <?php
 session_start(); // セッションを開始
+// echo "hoge";
+include '/var/www/app/View/common/header.php';
+
 
 // セッションにユーザー情報が保存されているかチェック
 if (isset($_SESSION['user_id'])) {
@@ -11,4 +14,6 @@ if (isset($_SESSION['user_id'])) {
 } else {
     echo "<button onclick=\"location.href='login.php'\">ログイン</button>";
 }
+
+include '/var/www/app/View/common/footer.php';
 ?>

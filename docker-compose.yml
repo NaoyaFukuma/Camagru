@@ -2,11 +2,10 @@ services:
   web:
     build: ./
     ports:
-      - "80:80"
+      - "443:443"
     volumes:
       - ./public:/var/www/html
       - ./app:/var/www/app
-      - ./config:/var/www/config
       - ./config/apache/apache.conf:/etc/apache2/sites-available/000-default.conf
       - uploads:/var/www/uploads
       - apache_logs:/var/log/apache2

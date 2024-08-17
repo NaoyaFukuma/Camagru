@@ -11,5 +11,8 @@ restart:
 up-build:
 	docker compose up -d --build
 
+no-cache:
+	docker compose build --no-cache
+
 test:
 # phpでのテストを用意するの待ち.....

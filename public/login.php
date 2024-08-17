@@ -1,21 +1,48 @@
 <?php
-session_start();
+session_start(); // セッションを開始
+
+// ダミーのユーザー認証情報（実際にはデータベースなどで確認）
+$validUsername = 'user';
+$validPassword = 'password';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // POSTリクエストからメールアドレスとパスワードを受け取る
-    $email = $_POST['email'];  // 実際のアプリケーションではサニタイズが必要
-    $password = $_POST['password']; // 実際のアプリケーションではサニタイズが必要
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    // ここで本来はデータベースに問い合わせてユーザー認証を行いますが、今回はスキップして常に成功とします。
-    $_SESSION['user_id'] = 12345;  // ユーザーIDをセッションに設定
-    header('Location: index.php'); // ログイン成功後にリダイレクト
-    exit;
-} else {
-    // ログインフォームを表示
-    echo '<form action="login.php" method="post">
-            Email: <input type="email" name="email"><br>
-            Password: <input type="password" name="password"><br>
-            <input type="submit" value="Login">
-          </form>';
+    // ユーザー名とパスワードのチェック
+    if ($username === $validUsername && $password === $validPassword) {
+        // 認証が成功した場合、セッションにユーザー情報を保存
+        $_SESSION['user_id'] = 1; // ユーザーIDを保存
+        $_SESSION['username'] = $username; // ユーザー名を保存
+
+        // ログイン後、メインページへリダイレクト
+        header('Location: /');
+        exit;
+    } else {
+        $error = 'ユーザー名またはパスワードが間違っています。';
+    }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Camagru</title>
+</head>
+<body>
+    <h2>ログイン</h2>
+    <?php if (!empty($error)): ?>
+        <p style="color: red;"><?php echo $error; ?></p>
+    <?php endif; ?>
+    <form method="POST" action="/login">
+        <label for="username">ユーザー名:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">パスワード:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">ログイン</button>
+    </form>
+</body>
+</html>

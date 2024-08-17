@@ -1,3 +1,9 @@
+<?php
+session_start(); // セッションを開始
+
+// ログイン状態のチェック
+$loggedIn = isset($_SESSION['user_id']);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,34 +27,20 @@
             </nav>
             <!-- ユーザーメニューとログアウトボタン -->
             <div class="flex items-center space-x-4">
-                <!-- ログイン状態のチェック -->
-                <div id="user-menu">
+                <?php if ($loggedIn): ?>
                     <!-- ログインしている場合 -->
                     <div class="flex items-center space-x-4">
                         <a href="/profile" class="flex items-center">Profile</a>
                         <a href="/logout" class="text-gray-800 hover:text-gray-600">Logout</a>
                     </div>
-                </div>
-                <!-- ログインしていない場合 -->
-                <div class="hidden" id="login-menu">
-                    <a href="/login" class="text-gray-800 hover:text-gray-600">Login</a>
-                </div>
+                <?php else: ?>
+                    <!-- ログインしていない場合 -->
+                    <div id="login-menu">
+                        <a href="/login" class="text-gray-800 hover:text-gray-600">Login</a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </header>
-
-    <script>
-        // ユーザーのログイン状態に応じて表示を切り替える
-        document.addEventListener('DOMContentLoaded', function() {
-            var loggedIn = true; // ユーザーのログイン状態をチェックするロジックをここに追加
-            if (loggedIn) {
-                document.getElementById('user-menu').classList.remove('hidden');
-                document.getElementById('login-menu').classList.add('hidden');
-            } else {
-                document.getElementById('login-menu').classList.remove('hidden');
-                document.getElementById('user-menu').classList.add('hidden');
-            }
-        });
-    </script>
 </body>
 </html>

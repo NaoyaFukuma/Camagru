@@ -10,10 +10,8 @@
                 </div>
                 <div>
                     <a href="https://twitter.com" target="_blank" class="hover:text-gray-300">
-                        <img src="path_to_twitter_icon.png" alt="Twitter" class="w-6 h-6">
                     </a>
                     <a href="https://facebook.com" target="_blank" class="hover:text-gray-300">
-                        <img src="path_to_facebook_icon.png" alt="Facebook" class="w-6 h-6">
                     </a>
                 </div>
             </div>
